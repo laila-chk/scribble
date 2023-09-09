@@ -6,7 +6,7 @@
 /*   By: lchokri <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 14:40:23 by lchokri           #+#    #+#             */
-/*   Updated: 2023/09/03 14:47:37 by lchokri          ###   ########.fr       */
+/*   Updated: 2023/09/06 15:26:55 by lchokri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ Warlock::~Warlock() {
 	std::cout << name <<": My job here is done!" << std::endl;
 }
 
-const std::string& Warlock::getName() const
-{
+const std::string& Warlock::getName() const {
 	return name;
 }
 
@@ -38,7 +37,7 @@ void Warlock::setTitle(const std::string& title) {
 }
 
 void Warlock::learnSpell(ASpell* sp) {
-	this->spells[sp->name] = sp->effects;
+	this->spells[sp->getName()] = sp;
 }
 
 void Warlock::forgetSpell(std::string spellname){
@@ -46,5 +45,7 @@ void Warlock::forgetSpell(std::string spellname){
 }
 
 void Warlock::launchSpell(std::string spellname, ATarget& trg) {
-	
+	std::map<std::string, const ASpell*>::iterator it = spells.find(spellname);
+	if (it != spells.end())
+		trg.getHitBySpell(*spells[spellname] );
 }

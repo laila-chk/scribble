@@ -1,7 +1,9 @@
 #pragma once
 
+#include <map>
 #include "ASpell.hpp"
 #include <iostream>
+
 
 class Warlock {
 
@@ -9,7 +11,7 @@ class Warlock {
 		Warlock();
 		std::string name;
 		std::string title;
-		std::map<std::string name, std::string efc> spells;
+		std::map<std::string, const ASpell*> spells;
 
 	public:
 		Warlock(std::string name, std::string title);
